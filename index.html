@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    /> -->
+    <!-- Socket.io -->
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+        integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+        crossorigin="anonymous"></script>
+    <!-- Codemirror CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css"
+        integrity="sha512-6sALqOPMrNSc+1p5xOhPwGIzs6kIlST+9oGWlI4Wwcbj1saaX9J3uzO3Vub016dmHV7hM+bMi/rfXLiF5DNIZg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"
+        integrity="sha512-XMlgZzPyVXf1I/wbGnofk1Hfdx+zAWyZjh6c21yGo/k1zNC4Ve6xcQnTDTCHrjFGsOrVicJsBURLYktVEu/8vQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/theme/cobalt.min.css"
+        integrity="sha512-dAYwzcmdv0GvCo9UJmVP430Mc9kmvpdDVk/pHNG90qTZR6tpHQlR9BsVdK9ZGpnNtQNVl+j7UQppCwOPN0TTNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/clike/clike.min.js"
+        integrity="sha512-GAled7oA9WlRkBaUQlUEgxm37hf43V2KEMaEiWlvBO/ueP2BLvBLKN5tIJu4VZOTwo6Z4XvrojYngoN9dJw2ug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- peerjs -->
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <!-- font Awesome Icons.. -->
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=PT+Serif&family=Roboto+Mono:wght@300&family=Rubik&display=swap"
+        rel="stylesheet">
+    <!-- CSS sheet -->
+    <link rel="stylesheet" href="public/css/style.css" />
+    <link rel="icon" href="public/img/favicon.ico" />
+    <title>Distributed Text Editor</title>
+</head>
+
+<body>
+    <!-- start page -->
+    <div class="register-page" id="registerPage">
+        <div class="header-bar">
+            <img src="./public/img/logo.png" />
+            <button type="button" id="register">Start</button>
+        </div>
+        <div class="glass-container" id="glass">
+            <div class="register-flex-1">
+                <h1>DTE</h1>
+            </div>
+            <div>
+                <input type="text" class="form-control" id="handle" placeholder="Your Nickname" />
+            </div>
+        </div>
+    </div>
+    <!-- Editor page -->
+    <div id="editor-block" style="display: none;">
+        <!-- logo text -->
+        <div class="editor-flex-1">
+            <img src="./public/img/logo.png" />
+            <button type="button" id="register" onclick="Share()">Share</button>
+        </div>
+
+        <div class="share-modal" id="share-modal" style="display: none;">
+            <div style="text-align: right;"><div style="cursor: pointer; color: #ffffff;" onclick="Close()">X</div></div>
+            <div style="margin: auto; width: 95%;"><input type="text" id="url" style="width: 100%; height: 30px; font-size: 16px; background-color: #000000; color: #ffffff;" /></div>            
+            <div style="text-align: center;"><button onclick="CopyToClipboard()" style="cursor: pointer; padding: 2px; padding-left: 10px; padding-right: 10px; margin-top: 10px; font-size: 1.2rem; background-color: #000000; color: #ffffff; ">copy</button></div>            
+        </div>
+
+        <div class="editor-chat">
+            <!-- text ediotr -->
+            <div id="editor">
+                <textarea id="textarea" class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+        
+        <div class="card">
+            <ul class="list-group list-group-flush" id="editors">
+            </ul>
+        </div>
+    </div>
+    <script src="public/js/client.js"></script>
+    <script src="public/js/fastdiff.js"></script>
+    
+</body>
+
+</html>
